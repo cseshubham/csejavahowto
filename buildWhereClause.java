@@ -9,32 +9,31 @@ public static String buildWhereClause(SearchQuery searchQuery) {
 
     for (SearchQuery.SearchCondition condition : conditions) {
         if (firstCondition) {
-            whereClauseBuilder.append("(");
             firstCondition = false;
         } else {
             whereClauseBuilder.append(" ");
-            whereClauseBuilder.append(searchQuery.getOperator().toUpperCase());
-            whereClauseBuilder.append(" (");
+            whereClauseBuilder.append(searchQuery.getConditionalOperator().toUpperCase());
+            whereClauseBuilder.append(" ");
         }
 
         List<SearchQuery.SearchCondition> subConditions = condition.getConditions();
         if (subConditions != null && !subConditions.isEmpty()) {
-            whereClauseBuilder.append(buildWhereClause(new SearchQuery(subConditions, condition.getOperator())));
+            whereClauseBuilder.append("(");
+            whereClauseBuilder.append(buildWhereClause(new SearchQuery(subConditions, condition.getConditionalOperator())));
+            whereClauseBuilder.append(")");
         } else {
-            whereClauseBuilder.append(condition.getColumn_name());
+            whereClauseBuilder.append(condition.getColumnName());
             whereClauseBuilder.append(" ");
             whereClauseBuilder.append(condition.getOperator());
             whereClauseBuilder.append(" ");
-            if (condition.getColumn_value() instanceof String) {
+            if (condition.getColumnValue() instanceof String) {
                 whereClauseBuilder.append("'");
-                whereClauseBuilder.append(condition.getColumn_value());
+                whereClauseBuilder.append(condition.getColumnValue());
                 whereClauseBuilder.append("'");
             } else {
-                whereClauseBuilder.append(condition.getColumn_value());
+                whereClauseBuilder.append(condition.getColumnValue());
             }
         }
-
-        whereClauseBuilder.append(")");
     }
 
     return whereClauseBuilder.toString();
