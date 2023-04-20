@@ -1,61 +1,52 @@
-import java.util.List;
-
 public class SearchQuery {
     private List<SearchCondition> conditions;
+    private String conditionalOperator;
+    private List<OrderByCondition> orderByConditions;
+
+    public SearchQuery() {
+    }
+
+    public SearchQuery(List<SearchCondition> conditions, String conditionalOperator, List<OrderByCondition> orderByConditions) {
+        this.conditions = conditions;
+        this.conditionalOperator = conditionalOperator;
+        this.orderByConditions = orderByConditions;
+    }
+
+    // getters and setters
+}
+
+public class SearchCondition {
+    private List<SearchCondition> conditions;
+    private String conditionalOperator;
+    private String columnName;
+    private Object columnValue;
     private String operator;
 
-    public List<SearchCondition> getConditions() {
-        return conditions;
+    public SearchCondition() {
     }
 
-    public void setConditions(List<SearchCondition> conditions) {
+    public SearchCondition(List<SearchCondition> conditions, String conditionalOperator, String columnName, Object columnValue, String operator) {
         this.conditions = conditions;
-    }
-
-    public String getOperator() {
-        return operator;
-    }
-
-    public void setOperator(String operator) {
+        this.conditionalOperator = conditionalOperator;
+        this.columnName = columnName;
+        this.columnValue = columnValue;
         this.operator = operator;
     }
 
-    public static class SearchCondition {
-        private List<SearchCondition> conditions;
-        private String column_name;
-        private Object column_value;
-        private String operator;
+    // getters and setters
+}
 
-        public List<SearchCondition> getConditions() {
-            return conditions;
-        }
+public class OrderByCondition {
+    private String columnName;
+    private String sortOrder;
 
-        public void setConditions(List<SearchCondition> conditions) {
-            this.conditions = conditions;
-        }
-
-        public String getColumn_name() {
-            return column_name;
-        }
-
-        public void setColumn_name(String column_name) {
-            this.column_name = column_name;
-        }
-
-        public Object getColumn_value() {
-            return column_value;
-        }
-
-        public void setColumn_value(Object column_value) {
-            this.column_value = column_value;
-        }
-
-        public String getOperator() {
-            return operator;
-        }
-
-        public void setOperator(String operator) {
-            this.operator = operator;
-        }
+    public OrderByCondition() {
     }
+
+    public OrderByCondition(String columnName, String sortOrder) {
+        this.columnName = columnName;
+        this.sortOrder = sortOrder;
+    }
+
+    // getters and setters
 }
