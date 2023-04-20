@@ -1,0 +1,40 @@
+{
+  "conditionalOperator": "and",
+  "conditions": [
+    {
+      "conditionalOperator": "or",
+      "conditions": [
+        {
+          "columnName": "age",
+          "columnValue": 25,
+          "operator": "<="
+        },
+        {
+          "columnName": "salary",
+          "columnValue": 50000,
+          "operator": "<"
+        }
+      ]
+    },
+    {
+      "conditionalOperator": "or",
+      "conditions": [
+        {
+          "columnName": "name",
+          "columnValue": "xyz",
+          "operator": "="
+        },
+        {
+          "columnName": "lastname",
+          "columnValue": "xyz",
+          "operator": "="
+        },
+        {
+          "columnName": "address",
+          "columnValue": "xyz",
+          "operator": "="
+        }
+      ]
+    }
+  ]
+}
